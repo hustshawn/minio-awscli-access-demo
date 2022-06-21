@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  minio:
+    image: quay.io/minio/minio
+    command:
+    - server 
+    - /data 
+    - --console-address 
+    - ":9001"
+    volumes:
+      - ./data:/data
+    ports:
+      - 9000:9000
+      - 9001:9001
+    environment:
+      # Can replace with AWS credentials: aws_access_key_id and aws_secret_access_key
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin
